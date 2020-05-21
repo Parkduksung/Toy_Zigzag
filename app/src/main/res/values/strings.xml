@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Toy_Zigzag</string>
+
+    <string-array name="ageGroup">
+        <item>10대</item>
+        <item>20대 초반</item>
+        <item>20대 중반</item>
+        <item>20대 후반</item>
+        <item>30대 초반</item>
+        <item>30대 중반</item>
+        <item>30대 후반</item>
+    </string-array>
+
+
+    //Splash
+    <string name="splash_main">ZIGZAG</string>
+    <string name="splash_recommend_wifi">WI-FI를 권장합니다</string>
+
+
+    //Main
+    <string name="shopping_main_filter">필터</string>
+    <string name="shopping_main_search">쇼핑몰 검색</string>
+    <string name="shopping_main_date">%s차 랭킹</string>
+    <string name="shopping_filter_context">쇼핑몰 필터</string>
+    <string name="shopping_filter_ageGroup">연령대</string>
+    <string name="shopping_filter_styleGroup">스타일</string>
+    <string name="shopping_filter_select_ok">선택 완료</string>
+
+    //Filter
+
+
+</resources>

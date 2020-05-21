@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorLeanWhite">#CCCCCC</color>
+    <color name="colorLeanBlack">#333333</color>
+    <color name="colorGray">#909090</color>
+
+    <string-array name="colorStyle">
+        <item>#FF99FF</item>// 페미닌
+        <item>#BBBBBB</item>// 모던시크
+        <item>#FFCCFF</item>// 러블리
+        <item>#FF6666</item>// 섹시글램
+        <item>#FFFF66</item>// 로맨틱
+        <item>#FFFF99</item>// 심플베이직
+        <item>#FFCC99</item>// 미시스타일
+        <item>#CC66CC</item>// 유니크
+        <item>#66CCFF</item>// 헐리웃스타일
+        <item>#FF99CC</item>// 럭셔리
+        <item>#6699FF</item>// 오피스룩
+        <item>#99FF99</item>// 스쿨룩
+        <item>#6699CC</item>// 캠퍼스룩
+        <item>#996666</item>// 빈티지
+    </string-array>
+</resources>
