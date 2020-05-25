@@ -39,7 +39,11 @@ class ShoppingActivity : AppCompatActivity(), View.OnClickListener, ShoppingCont
         when (v?.id) {
             R.id.btn_filter -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fl_container, ShoppingFilterFragment())
+                    .replace(
+                        R.id.fl_container,
+                        ShoppingFilterFragment(),
+                        ShoppingFilterFragment.TAG
+                    )
                     .addToBackStack(null)
                     .commit()
             }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -44,6 +45,14 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                fragmentManager?.popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+
         (activity as? ShoppingListener)?.let {
             shoppingListener = it
         }
@@ -157,6 +166,8 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
     }
 
     companion object {
+
+        const val TAG = "ShoppingFilterFragment"
 
         private const val STYLE_SPAN_COUNT = 3
         private const val AGE_SPAN_COUNT = 4
