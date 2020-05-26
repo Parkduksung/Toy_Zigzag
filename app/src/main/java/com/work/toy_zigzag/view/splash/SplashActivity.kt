@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.work.toy_zigzag.App
 import com.work.toy_zigzag.R
 import com.work.toy_zigzag.data.model.ShoppingItem
+import com.work.toy_zigzag.databinding.SplashBinding
 import com.work.toy_zigzag.util.Shopping
 import com.work.toy_zigzag.view.shopping.main.ShoppingActivity
 import com.work.toy_zigzag.view.splash.presenter.SplashContract
@@ -17,10 +19,16 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
 
     private lateinit var presenter: SplashContract.Presenter
 
+    private lateinit var binding: SplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.splash)
+
+        binding =
+            DataBindingUtil.setContentView(
+                this,
+                R.layout.splash
+            )
 
         presenter = get { parametersOf(this) }
         presenter.isExistItem()
