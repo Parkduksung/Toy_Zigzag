@@ -45,6 +45,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
                 Intent(this, ShoppingActivity::class.java).apply {
                     putExtra(SHOPPING_ITEM, shoppingItem)
                 }
+
             startActivity(nextIntent)
             this@SplashActivity.finish()
 

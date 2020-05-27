@@ -16,6 +16,7 @@ class SharedPreferences(context: Context) {
         get() = prefs.getString(PREF_KEY_SELECT_FILTER, EMPTY_TEXT)!!
         set(value) = prefs.edit().putString(PREF_KEY_SELECT_FILTER, value).apply()
 
+
     companion object {
         private const val PREFS_FILENAME = "prefs"
         private const val EMPTY_TEXT = ""

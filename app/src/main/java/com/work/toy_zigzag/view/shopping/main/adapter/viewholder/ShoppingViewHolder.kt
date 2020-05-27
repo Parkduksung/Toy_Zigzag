@@ -15,14 +15,12 @@ class ShoppingViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         R.layout.list_item, parent, false
     )
 ) {
-
     private val shoppingName = itemView.findViewById<TextView>(R.id.tv_name)
     private val shoppingRank = itemView.findViewById<TextView>(R.id.tv_rank)
     private val shoppingImage = itemView.findViewById<ImageView>(R.id.iv_image)
     private val shoppingAgeGroup = itemView.findViewById<TextView>(R.id.tv_age_group)
     private val shoppingStyle1 = itemView.findViewById<TextView>(R.id.tv_style1)
     private val shoppingStyle2 = itemView.findViewById<TextView>(R.id.tv_style2)
-
 
     fun bind(item: ShoppingDocumentsItem, position: Int) {
 

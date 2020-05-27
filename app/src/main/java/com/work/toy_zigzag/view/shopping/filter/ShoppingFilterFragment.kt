@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.work.toy_zigzag.App
 import com.work.toy_zigzag.R
 import com.work.toy_zigzag.data.model.ShoppingItem
+import com.work.toy_zigzag.databinding.ShoppingFilterBinding
 import com.work.toy_zigzag.enums.Sort
 import com.work.toy_zigzag.enums.State
 import com.work.toy_zigzag.util.Decoration
@@ -23,7 +25,6 @@ import com.work.toy_zigzag.view.shopping.filter.adapter.AgeAdapter
 import com.work.toy_zigzag.view.shopping.filter.adapter.StyleAdapter
 import com.work.toy_zigzag.view.shopping.filter.adapter.listener.AdapterListener
 import com.work.toy_zigzag.view.shopping.filter.presenter.ShoppingFilterContract
-import kotlinx.android.synthetic.main.shopping_filter.*
 import org.koin.android.ext.android.get
 import org.koin.core.parameter.parametersOf
 
@@ -42,6 +43,7 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
     private val isCheckStyleMap by lazy { mutableMapOf<String, Int>() }
 
     private lateinit var shoppingListener: ShoppingListener
+    private lateinit var binding: ShoppingFilterBinding
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -63,7 +65,13 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.shopping_filter, container, false).apply {
+
+        binding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.shopping_filter, container, false)
+
+        val view = binding.root
+
+        with(view) {
             setBackgroundColor(
                 ContextCompat.getColor(
                     App.instance.context(),
@@ -74,6 +82,9 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
                 true
             }
         }
+
+        return view
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,9 +92,9 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
 
         presenter = get { parametersOf(this) }
 
-        iv_close.setOnClickListener(this)
-        iv_refresh.setOnClickListener(this)
-        tv_select_ok.setOnClickListener(this)
+        binding.ivClose.setOnClickListener(this)
+        binding.ivRefresh.setOnClickListener(this)
+        binding.tvSelectOk.setOnClickListener(this)
 
         startView()
     }
@@ -150,14 +161,14 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
             isCheckStyleMap[it] = State.UNCHECK.value
         }
 
-        rv_age.run {
+        binding.rvAge.run {
             adapter = ageAdapter
             layoutManager = GridLayoutManager(context, AGE_SPAN_COUNT)
             addItemDecoration(Decoration(10, 10, 20, 20))
             ageAdapter.addAllData(ageMapList)
         }
 
-        rv_style.run {
+        binding.rvStyle.run {
             adapter = styleAdapter
             layoutManager = GridLayoutManager(context, STYLE_SPAN_COUNT)
             addItemDecoration(Decoration(10, 10, 20, 20))
