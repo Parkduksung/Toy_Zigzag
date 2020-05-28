@@ -17,7 +17,6 @@ import com.work.toy_zigzag.view.shopping.filter.ShoppingFilterFragment
 import com.work.toy_zigzag.view.shopping.main.adapter.ShoppingAdapter
 import com.work.toy_zigzag.view.shopping.main.presenter.ShoppingContract
 import com.work.toy_zigzag.view.splash.SplashActivity
-
 import org.koin.android.ext.android.get
 import org.koin.core.parameter.parametersOf
 
@@ -65,6 +64,7 @@ class ShoppingActivity : AppCompatActivity(), View.OnClickListener, ShoppingCont
             text = App.prefs.selectFilter
             isVisible = App.prefs.selectFilter.isNotEmpty()
         }
+
         list.forEach { item ->
             shoppingAdapter.addData(item)
         }

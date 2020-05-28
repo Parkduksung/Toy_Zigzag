@@ -12,9 +12,11 @@ class Decoration(var left: Int, var right: Int, var top: Int, var bottom: Int) :
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        outRect.left = left
-        outRect.right = right
-        outRect.top = top
-        outRect.bottom = bottom
+        outRect.also {
+            it.left = left
+            it.right = right
+            it.top = top
+            it.bottom = bottom
+        }
     }
 }
