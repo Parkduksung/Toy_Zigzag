@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data />
 
-    <CheckBox
-        android:id="@+id/cb_age"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:autoSizeMaxTextSize="15dp"
-        android:autoSizeMinTextSize="10dp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/custom_age_button"
-        android:button="@null"
-        android:gravity="center"
-        android:lines="1"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:stateListAnimator="@null"
-        android:textColor="@color/colorPrimary"
-        tools:ignore="SpUsage,UnusedAttribute" />
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/cb_age"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:autoSizeMaxTextSize="15dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/custom_age_button"
+            android:button="@null"
+            android:gravity="center"
+            android:lines="1"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:stateListAnimator="@null"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 14:1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage,UnusedAttribute" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

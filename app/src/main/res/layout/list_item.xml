@@ -12,82 +12,89 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            tools:ignore="UnusedAttribute,SmallSp,ContentDescription">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_rank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/iv_image"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/iv_image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/style_item_image_rounded_boarder"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias=".15"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.4"
-                app:layout_constraintHorizontal_bias=".1"
-                app:layout_constraintStart_toEndOf="@id/iv_image"
-                app:layout_constraintTop_toTopOf="@id/iv_image" />
-
-            <TextView
-                android:id="@+id/tv_age_group"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:background="@drawable/style_border_round"
-                android:gravity="center"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@id/iv_image"
-                app:layout_constraintHorizontal_bias=".1"
-                app:layout_constraintStart_toStartOf="@id/tv_name"
-                app:layout_constraintTop_toBottomOf="@id/tv_name" />
-
-            <TextView
-                android:id="@+id/tv_style1"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                app:layout_constraintBottom_toBottomOf="@id/iv_image"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias=".1"
-                app:layout_constraintStart_toEndOf="@id/tv_age_group"
-                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,5:1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UnusedAttribute,SmallSp,ContentDescription">
 
-            <TextView
-                android:id="@+id/tv_style2"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                app:layout_constraintBottom_toBottomOf="@id/iv_image"
-                app:layout_constraintStart_toEndOf="@id/tv_style1"
-                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+                <TextView
+                    android:id="@+id/tv_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:id="@+id/iv_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/style_item_image_rounded_boarder"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias=".15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.4"
+                    app:layout_constraintHorizontal_bias=".1"
+                    app:layout_constraintStart_toEndOf="@id/iv_image"
+                    app:layout_constraintTop_toTopOf="@id/iv_image" />
+
+                <TextView
+                    android:id="@+id/tv_age_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:background="@drawable/style_border_round"
+                    android:gravity="center"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_image"
+                    app:layout_constraintHorizontal_bias=".1"
+                    app:layout_constraintStart_toStartOf="@id/tv_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+                <TextView
+                    android:id="@+id/tv_style1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias=".1"
+                    app:layout_constraintStart_toEndOf="@id/tv_age_group"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+                <TextView
+                    android:id="@+id/tv_style2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_image"
+                    app:layout_constraintStart_toEndOf="@id/tv_style1"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
