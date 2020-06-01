@@ -5,16 +5,10 @@ import com.work.toy_zigzag.data.model.ShoppingItem
 interface SplashContract {
 
     interface View {
-
-        fun showRegister(shoppingItem: ShoppingItem)
-
-        fun showExistState(shoppingItem: ShoppingItem?)
+        fun showItem(shoppingItem: ShoppingItem)
     }
 
     interface Presenter {
-
-        fun registerShopping(fileName: String)
-
-        fun isExistItem()
+        fun checkExistItem(fileName: String)
     }
 }

@@ -57,7 +57,6 @@
                     app:layout_constraintTop_toTopOf="@id/iv_update"
                     tools:ignore="SmallSp" />
 
-
                 <Button
                     android:id="@+id/btn_filter"
                     android:layout_width="65dp"

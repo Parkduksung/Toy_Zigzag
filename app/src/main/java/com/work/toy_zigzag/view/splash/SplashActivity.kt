@@ -31,8 +31,12 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
             )
 
         presenter = get { parametersOf(this) }
-        presenter.isExistItem()
+        presenter.checkExistItem(FILE_NAME)
 
+    }
+
+    override fun showItem(shoppingItem: ShoppingItem) {
+        startView(shoppingItem)
     }
 
     private fun startView(shoppingItem: ShoppingItem) {
@@ -51,19 +55,6 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
 
         }, DELAY_MILLIS)
     }
-
-    override fun showExistState(shoppingItem: ShoppingItem?) {
-        if (shoppingItem != null) {
-            startView(shoppingItem)
-        } else {
-            presenter.registerShopping(FILE_NAME)
-        }
-    }
-
-    override fun showRegister(shoppingItem: ShoppingItem) {
-        startView(shoppingItem)
-    }
-
 
     companion object {
         private const val DELAY_MILLIS = 1300L

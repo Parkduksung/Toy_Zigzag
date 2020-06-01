@@ -7,26 +7,30 @@ class SplashPresenter(
     private val shoppingRepository: ShoppingRepository
 ) : SplashContract.Presenter {
 
-    override fun registerShopping(fileName: String) {
-        shoppingRepository.registerShopping(
-            fileName,
+    override fun checkExistItem(fileName: String) {
+        shoppingRepository.getAll(
             callback = { shoppingEntity ->
-                shoppingEntity?.let {
-                    val toShoppingItem =
-                        shoppingEntity.toShoppingItem()
-                    splashView.showRegister(toShoppingItem)
+                val toShoppingItem =
+                    shoppingEntity.toShoppingItem()
+                if (toShoppingItem.list.isNotEmpty()) {
+                    splashView.showItem(toShoppingItem)
+                } else {
+                    registerShopping(fileName)
                 }
             }
         )
     }
 
-    override fun isExistItem() {
-        shoppingRepository.getAll(
-            callback = { shoppingEntity ->
+    private fun registerShopping(fileName: String) {
+        shoppingRepository.registerShopping(
+            fileName,
+            onSuccess = { shoppingEntity ->
                 val toShoppingItem =
-                    shoppingEntity?.toShoppingItem()
-                splashView.showExistState(toShoppingItem)
-            }
-        )
+                    shoppingEntity.toShoppingItem()
+                splashView.showItem(toShoppingItem)
+            },
+            onFailure = {
+            })
     }
+
 }

@@ -10,7 +10,7 @@ class ShoppingLocalDataSourceImpl(
     private val shoppingDatabase: ShoppingDatabase
 ) :
     ShoppingLocalDataSource {
-    override fun getAll(callback: (shoppingEntity: ShoppingEntity?) -> Unit) {
+    override fun getAll(callback: (shoppingEntity: ShoppingEntity) -> Unit) {
         appExecutors.diskIO.execute {
 
             val getItem =
@@ -24,7 +24,8 @@ class ShoppingLocalDataSourceImpl(
 
     override fun registerShopping(
         fileName: String,
-        callback: (shoppingEntity: ShoppingEntity?) -> Unit
+        onSuccess: (shoppingEntity: ShoppingEntity) -> Unit,
+        onFailure: () -> Unit
     ) {
         appExecutors.diskIO.execute {
 
@@ -46,9 +47,9 @@ class ShoppingLocalDataSourceImpl(
 
             appExecutors.mainThread.execute {
                 if (registerShoppingList >= 1) {
-                    callback(shoppingEntity)
+                    onSuccess(shoppingEntity)
                 } else {
-                    callback(null)
+                    onFailure()
                 }
             }
         }

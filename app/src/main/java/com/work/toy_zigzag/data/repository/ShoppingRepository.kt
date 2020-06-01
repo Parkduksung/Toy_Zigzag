@@ -6,9 +6,11 @@ interface ShoppingRepository {
 
     fun registerShopping(
         fileName: String,
-        callback: (shoppingEntity: ShoppingEntity?) -> Unit
+        onSuccess: (shoppingEntity: ShoppingEntity) -> Unit,
+        onFailure: () -> Unit
     )
+
     fun getAll(
-        callback: (shoppingEntity: ShoppingEntity?) -> Unit
+        callback: (shoppingEntity: ShoppingEntity) -> Unit
     )
 }
