@@ -10,11 +10,10 @@
         android:layout_height="match_parent"
         tools:ignore="ContentDescription">
 
-
         <ImageView
             android:id="@+id/iv_close"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/ic_close"
@@ -24,30 +23,31 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:gravity="center"
             android:text="@string/shopping_filter_context"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv_close"
             app:layout_constraintStart_toEndOf="@id/iv_close"
             app:layout_constraintTop_toTopOf="@id/iv_close" />
 
 
         <ImageView
             android:id="@+id/iv_refresh"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:src="@drawable/ic_refresh"
+            app:layout_constraintBottom_toBottomOf="@id/iv_close"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/iv_close" />
 
         <TextView
             android:id="@+id/tv_sortLine_age"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
             android:background="@color/colorLeanWhite"
             android:gravity="center_vertical"
             android:paddingStart="10dp"
@@ -55,6 +55,7 @@
             android:text="@string/shopping_filter_ageGroup"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".05"
             app:layout_constraintTop_toBottomOf="@id/iv_close"
             app:layout_constraintVertical_bias=".05" />
 
@@ -71,7 +72,7 @@
         <TextView
             android:id="@+id/tv_sortLine_style"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
             android:background="@color/colorLeanWhite"
             android:gravity="center_vertical"
             android:paddingStart="10dp"
@@ -79,6 +80,7 @@
             android:text="@string/shopping_filter_styleGroup"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".05"
             app:layout_constraintTop_toBottomOf="@id/iv_close"
             app:layout_constraintVertical_bias=".35" />
 
@@ -95,13 +97,14 @@
         <TextView
             android:id="@+id/tv_select_ok"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="0dp"
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:text="@string/shopping_filter_select_ok"
             android:textColor="@color/colorWhite"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1" />
 

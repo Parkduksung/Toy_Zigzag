@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -10,7 +8,6 @@
         <variable
             name="updateDate"
             type="String" />
-
     </data>
 
     <FrameLayout
@@ -59,7 +56,7 @@
 
                 <Button
                     android:id="@+id/btn_filter"
-                    android:layout_width="65dp"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/event_border_round"
@@ -74,11 +71,12 @@
                     app:layout_constraintHeight_percent="0.5"
                     app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintStart_toEndOf="@id/tv_update_date"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".2" />
 
                 <Button
                     android:id="@+id/btn_search"
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginEnd="5dp"
                     android:background="@drawable/event_border_round"
@@ -93,15 +91,14 @@
                     app:layout_constraintHeight_percent="0.5"
                     app:layout_constraintHorizontal_bias="1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".3" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <TextView
                 android:id="@+id/tv_select_filter"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="0dp"
                 android:drawableStart="@drawable/ic_filter"
                 android:drawablePadding="15dp"
                 android:drawableTint="@color/colorPrimary"
@@ -111,6 +108,7 @@
                 android:singleLine="true"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".06"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cl_content"
                 tools:ignore="UnusedAttribute" />
@@ -120,8 +118,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:scrollbars="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.9"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_select_filter" />
 
