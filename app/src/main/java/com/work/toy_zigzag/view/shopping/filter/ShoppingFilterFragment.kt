@@ -15,7 +15,6 @@ import com.work.toy_zigzag.R
 import com.work.toy_zigzag.data.model.ShoppingItem
 import com.work.toy_zigzag.databinding.ShoppingFilterBinding
 import com.work.toy_zigzag.enums.Sort
-import com.work.toy_zigzag.enums.State
 import com.work.toy_zigzag.util.Decoration
 import com.work.toy_zigzag.util.Shopping
 import com.work.toy_zigzag.util.Shopping.getCheckList
@@ -25,6 +24,7 @@ import com.work.toy_zigzag.view.shopping.filter.adapter.AgeAdapter
 import com.work.toy_zigzag.view.shopping.filter.adapter.StyleAdapter
 import com.work.toy_zigzag.view.shopping.filter.adapter.listener.AdapterListener
 import com.work.toy_zigzag.view.shopping.filter.presenter.ShoppingFilterContract
+import com.work.toy_zigzag.view.shopping.filter.presenter.ShoppingFilterPresenter
 import org.koin.android.ext.android.get
 import org.koin.core.parameter.parametersOf
 
@@ -82,9 +82,7 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
                 true
             }
         }
-
         return view
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -102,7 +100,7 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
 
     override fun showItem(shoppingItem: ShoppingItem) {
         if (::shoppingListener.isInitialized) {
-            shoppingListener.getData(shoppingItem)
+            shoppingListener.getSelectData(shoppingItem)
             fragmentManager?.popBackStack()
         }
     }
@@ -149,16 +147,28 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
         }
     }
 
+    override fun showSelectFilterList(
+        sort: Int,
+        itemMapList: List<Pair<String, Int>>,
+        isCheckItemMap: Map<String, Int>
+    ) {
+        when (sort) {
+            ShoppingFilterPresenter.SORT_AGE -> {
+                ageMapList.addAll(itemMapList)
+                isCheckAgeMap.putAll(isCheckItemMap)
+            }
+            ShoppingFilterPresenter.SORT_STYLE -> {
+                styleMapList.addAll(itemMapList)
+                isCheckStyleMap.putAll(isCheckItemMap)
+            }
+        }
+    }
+
     private fun startView() {
 
-        resources.getStringArray(R.array.ageGroup).toList().forEach {
-            ageMapList.add(Pair(it, State.UNCHECK.value))
-            isCheckAgeMap[it] = State.UNCHECK.value
-        }
-
-        getStyleList().forEach {
-            styleMapList.add(Pair(it, State.UNCHECK.value))
-            isCheckStyleMap[it] = State.UNCHECK.value
+        presenter.apply {
+            checkSelectFilter(resources.getStringArray(R.array.ageGroup).toList())
+            checkSelectFilter(getStyleList())
         }
 
         binding.rvAge.run {

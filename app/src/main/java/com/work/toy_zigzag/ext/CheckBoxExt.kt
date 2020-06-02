@@ -6,9 +6,10 @@ import androidx.core.content.ContextCompat
 import com.work.toy_zigzag.App
 
 
-fun CheckBox.changeBackground(checkBox: CheckBox, changeColor: Int) {
+fun CheckBox.changeBackground(changeColor: Int) {
     val gradientDrawable =
-        (checkBox.background as GradientDrawable).mutate()
+        (background as GradientDrawable).mutate()
+
     (gradientDrawable as GradientDrawable).setColor(
         ContextCompat.getColor(
             App.instance.context(),
@@ -17,8 +18,8 @@ fun CheckBox.changeBackground(checkBox: CheckBox, changeColor: Int) {
     )
 }
 
-fun CheckBox.changeText(checkBox: CheckBox, changeColor: Int) {
-    checkBox.setTextColor(
+fun CheckBox.changeText(changeColor: Int) {
+    setTextColor(
         ContextCompat.getColor(
             App.instance.context(),
             changeColor

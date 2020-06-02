@@ -2,9 +2,9 @@ package com.work.toy_zigzag.view.shopping.filter.adapter.viewholder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.work.toy_zigzag.R
+import com.work.toy_zigzag.databinding.AgeItemBinding
 import com.work.toy_zigzag.enums.Sort
 import com.work.toy_zigzag.enums.State
 import com.work.toy_zigzag.ext.changeBackground
@@ -17,30 +17,39 @@ class AgeViewHolder(parent: ViewGroup, private val adapterListener: AdapterListe
             R.layout.age_item, parent, false
         )
     ) {
-    private val ageCheckBox =
-        itemView.findViewById<CheckBox>(R.id.cb_age)
+
+
+    private val binding = AgeItemBinding.bind(itemView)
 
     fun bind(age: Pair<String, Int>) {
-        ageCheckBox.text = age.first
+
+        binding.cbAge.text = age.first
 
         if (age.second == State.UNCHECK.value) {
-            ageCheckBox.apply {
-                changeBackground(this, R.color.colorWhite)
-                changeText(this, R.color.colorPrimary)
+            binding.cbAge.apply {
+                changeBackground(R.color.colorWhite)
+                changeText(R.color.colorPrimary)
+                isChecked = false
+            }
+        } else {
+            binding.cbAge.apply {
+                changeBackground(R.color.colorPrimary)
+                changeText(R.color.colorWhite)
+                isChecked = true
             }
         }
 
-        ageCheckBox.setOnCheckedChangeListener { _, isChecked ->
+        binding.cbAge.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                ageCheckBox.apply {
-                    changeBackground(this, R.color.colorPrimary)
-                    changeText(this, R.color.colorWhite)
+                binding.cbAge.apply {
+                    changeBackground(R.color.colorPrimary)
+                    changeText(R.color.colorWhite)
                 }
                 adapterListener.getItemState(Sort.AGE, Pair(age.first, State.CHECK.value))
             } else {
-                ageCheckBox.apply {
-                    changeBackground(this, R.color.colorWhite)
-                    changeText(this, R.color.colorPrimary)
+                binding.cbAge.apply {
+                    changeBackground(R.color.colorWhite)
+                    changeText(R.color.colorPrimary)
                 }
                 adapterListener.getItemState(Sort.AGE, Pair(age.first, State.UNCHECK.value))
             }

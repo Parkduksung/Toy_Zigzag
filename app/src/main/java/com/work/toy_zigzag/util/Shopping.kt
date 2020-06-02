@@ -149,7 +149,6 @@ object Shopping {
         ageGroup: List<Int>,
         styleList: List<String>
     ): ShoppingItem {
-
         return if (ageGroup.sum() == State.EMPTY.value) {
             val toCheckList =
                 sortContainStyle(
@@ -220,6 +219,30 @@ object Shopping {
         App.prefs.selectFilter = saveSelectFilter
     }
 
+    fun getSelectFilterList(shoppingItem: ShoppingItem, selectFilter: String): ShoppingItem =
+        getCheckShoppingItem(
+            shoppingItem,
+            convertAgeGroupList(getAgeListBySelectFilter(selectFilter)),
+            getStyleListBySelectFilter(selectFilter)
+        )
+
+
+    private fun convertAgeGroupList(ageList: List<String>): List<Int> {
+
+        val resultAgeList = mutableMapOf<String, Int>()
+
+        App.instance.context().resources.getStringArray(R.array.ageGroup).forEach { ageGroup ->
+            var count = 0
+            ageList.forEach { item ->
+                if (ageGroup == item) {
+                    count += 1
+                }
+            }
+            resultAgeList[ageGroup] = count
+        }
+        return resultAgeList.map { it.value }
+    }
+
 
     @SuppressLint("ResourceAsColor")
     private fun setStyleBackgroundColor(style: String, textView: TextView, cornerState: Int) {
@@ -252,5 +275,33 @@ object Shopping {
         }
 
         textView.background = gradientDrawable
+    }
+
+    fun getAgeListBySelectFilter(selectFilter: String): List<String> {
+        return if (selectFilter.contains("/")) {
+            selectFilter.split("/")[0]
+                .substring(0, selectFilter.split("/")[0].lastIndex - 1)
+                .split(",")
+        } else {
+            if (selectFilter.none { it.isDigit() }) {
+                emptyList()
+            } else {
+                selectFilter.split(",")
+            }
+        }
+    }
+
+    fun getStyleListBySelectFilter(selectFilter: String): List<String> {
+        return if (selectFilter.contains("/")) {
+            selectFilter.split("/")[1]
+                .substring(1, selectFilter.split("/")[1].lastIndex)
+                .split(",")
+        } else {
+            if (selectFilter.none { it.isDigit() }) {
+                selectFilter.split(",")
+            } else {
+                emptyList()
+            }
+        }
     }
 }

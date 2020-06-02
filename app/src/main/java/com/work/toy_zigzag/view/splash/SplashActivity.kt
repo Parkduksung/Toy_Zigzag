@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.work.toy_zigzag.App
 import com.work.toy_zigzag.R
 import com.work.toy_zigzag.data.model.ShoppingItem
 import com.work.toy_zigzag.databinding.SplashBinding
@@ -41,25 +40,18 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
 
     private fun startView(shoppingItem: ShoppingItem) {
         Handler().postDelayed({
-            App.prefs.selectFilter = INIT
 
             Shopping.saveStyleSort(shoppingItem)
 
-            val nextIntent =
-                Intent(this, ShoppingActivity::class.java).apply {
-                    putExtra(SHOPPING_ITEM, shoppingItem)
-                }
-
-            startActivity(nextIntent)
-            this@SplashActivity.finish()
-
+            startActivity(
+                Intent(this, ShoppingActivity::class.java)
+            )
+            finish()
         }, DELAY_MILLIS)
     }
 
     companion object {
         private const val DELAY_MILLIS = 1300L
         private const val FILE_NAME = "shop_list.json"
-        private const val INIT = ""
-        const val SHOPPING_ITEM = "shoppingItem"
     }
 }

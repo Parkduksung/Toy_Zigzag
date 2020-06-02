@@ -10,7 +10,7 @@ interface ShoppingContract {
     }
 
     interface Presenter {
-        fun getShoppingItem(shoppingItem: ShoppingItem)
+        fun getShoppingItem()
     }
 
 }

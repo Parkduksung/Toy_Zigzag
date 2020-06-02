@@ -26,7 +26,8 @@ val presenterModule = module {
 
     factory<ShoppingContract.Presenter> { (view: ShoppingContract.View) ->
         ShoppingPresenter(
-            view
+            view,
+            get()
         )
     }
 }

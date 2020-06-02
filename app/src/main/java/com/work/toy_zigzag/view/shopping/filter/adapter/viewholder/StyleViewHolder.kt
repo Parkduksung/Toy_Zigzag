@@ -2,9 +2,9 @@ package com.work.toy_zigzag.view.shopping.filter.adapter.viewholder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.work.toy_zigzag.R
+import com.work.toy_zigzag.databinding.StyleItemBinding
 import com.work.toy_zigzag.enums.Sort
 import com.work.toy_zigzag.enums.State
 import com.work.toy_zigzag.ext.changeBackground
@@ -17,30 +17,38 @@ class StyleViewHolder(parent: ViewGroup, private val adapterListener: AdapterLis
             R.layout.style_item, parent, false
         )
     ) {
-    private val styleButton =
-        itemView.findViewById<CheckBox>(R.id.cb_style)
+
+    private val binding = StyleItemBinding.bind(itemView)
 
     fun bind(style: Pair<String, Int>) {
-        styleButton.text = style.first
+
+        binding.cbStyle.text = style.first
 
         if (style.second == State.UNCHECK.value) {
-            styleButton.apply {
-                changeBackground(this, R.color.colorWhite)
-                changeText(this, R.color.colorAccent)
+            binding.cbStyle.apply {
+                changeBackground(R.color.colorWhite)
+                changeText(R.color.colorAccent)
+                isChecked = false
+            }
+        } else {
+            binding.cbStyle.apply {
+                changeBackground(R.color.colorAccent)
+                changeText(R.color.colorWhite)
+                isChecked = true
             }
         }
 
-        styleButton.setOnCheckedChangeListener { _, isChecked ->
+        binding.cbStyle.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                styleButton.apply {
-                    changeBackground(this, R.color.colorAccent)
-                    changeText(this, R.color.colorWhite)
+                binding.cbStyle.apply {
+                    changeBackground(R.color.colorAccent)
+                    changeText(R.color.colorWhite)
                 }
                 adapterListener.getItemState(Sort.STYLE, Pair(style.first, State.CHECK.value))
             } else {
-                styleButton.apply {
-                    changeBackground(this, R.color.colorWhite)
-                    changeText(this, R.color.colorAccent)
+                binding.cbStyle.apply {
+                    changeBackground(R.color.colorWhite)
+                    changeText(R.color.colorAccent)
                 }
                 adapterListener.getItemState(Sort.STYLE, Pair(style.first, State.UNCHECK.value))
             }
