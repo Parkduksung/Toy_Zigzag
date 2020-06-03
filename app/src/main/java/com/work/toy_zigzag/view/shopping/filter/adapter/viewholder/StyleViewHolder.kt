@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.work.toy_zigzag.R
 import com.work.toy_zigzag.databinding.StyleItemBinding
+import com.work.toy_zigzag.enums.ClickState
 import com.work.toy_zigzag.enums.Sort
-import com.work.toy_zigzag.enums.State
 import com.work.toy_zigzag.ext.changeBackground
 import com.work.toy_zigzag.ext.changeText
 import com.work.toy_zigzag.view.shopping.filter.adapter.listener.AdapterListener
@@ -24,7 +24,7 @@ class StyleViewHolder(parent: ViewGroup, private val adapterListener: AdapterLis
 
         binding.cbStyle.text = style.first
 
-        if (style.second == State.UNCHECK.value) {
+        if (style.second == ClickState.UNCHECK.value) {
             binding.cbStyle.apply {
                 changeBackground(R.color.colorWhite)
                 changeText(R.color.colorAccent)
@@ -46,7 +46,7 @@ class StyleViewHolder(parent: ViewGroup, private val adapterListener: AdapterLis
                 }
                 adapterListener.getItemState(
                     Sort.STYLE,
-                    Pair(style.first, State.CHECK.value)
+                    Pair(style.first, ClickState.CHECK.value)
                 )
             } else {
                 binding.cbStyle.apply {
@@ -55,7 +55,7 @@ class StyleViewHolder(parent: ViewGroup, private val adapterListener: AdapterLis
                 }
                 adapterListener.getItemState(
                     Sort.STYLE,
-                    Pair(style.first, State.UNCHECK.value)
+                    Pair(style.first, ClickState.UNCHECK.value)
                 )
             }
         }

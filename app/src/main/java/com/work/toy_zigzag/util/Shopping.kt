@@ -8,7 +8,8 @@ import com.work.toy_zigzag.App
 import com.work.toy_zigzag.R
 import com.work.toy_zigzag.data.model.ShoppingDocumentsItem
 import com.work.toy_zigzag.data.model.ShoppingItem
-import com.work.toy_zigzag.enums.State
+import com.work.toy_zigzag.enums.CornerState
+import com.work.toy_zigzag.enums.ValueState
 
 
 object Shopping {
@@ -48,7 +49,7 @@ object Shopping {
         }
 
         val containAge =
-            toMapAgeList.filter { it.value == State.EXIST.value }.map { it.key }
+            toMapAgeList.filter { it.value == ValueState.EXIST.value }.map { it.key }
 
         duplicateAge(containAge).sorted().let { list ->
             list.forEachIndexed { index, age ->
@@ -102,7 +103,7 @@ object Shopping {
 
 
     fun getCheckList(item: Map<String, Int>): List<String> =
-        item.filter { it.value == State.EXIST.value }.map { it.key }
+        item.filter { it.value == ValueState.EXIST.value }.map { it.key }
 
 
     private fun sortContainAgeGroup(
@@ -115,7 +116,7 @@ object Shopping {
 
         shoppingDocumentsItemList.forEach { documentsItem ->
             ageGroup.forEachIndexed { index, i ->
-                if (i == State.EXIST.value && documentsItem.ageGroup[index] == i) {
+                if (i == ValueState.EXIST.value && documentsItem.ageGroup[index] == i) {
                     toContainAge.add(documentsItem)
                 }
             }
@@ -149,7 +150,7 @@ object Shopping {
         ageGroup: List<Int>,
         styleList: List<String>
     ): ShoppingItem {
-        return if (ageGroup.sum() == State.EMPTY.value) {
+        return if (ageGroup.sum() == ValueState.EMPTY.value) {
             val toCheckList =
                 sortContainStyle(
                     shoppingItem.list,
@@ -175,16 +176,16 @@ object Shopping {
                 val list = sort.split(",")
                 style1.apply {
                     text = list[0]
-                    setStyleBackgroundColor(list[0], style1, State.CORNER_LEFT.value)
+                    setStyleBackgroundColor(list[0], style1, CornerState.CORNER_LEFT.value)
                 }
                 style2.apply {
                     text = list[1]
-                    setStyleBackgroundColor(list[1], style2, State.CORNER_RIGHT.value)
+                    setStyleBackgroundColor(list[1], style2, CornerState.CORNER_RIGHT.value)
                 }
             } else {
                 style1.apply {
                     text = sort
-                    setStyleBackgroundColor(sort, style1, State.CORNER_ROUND.value)
+                    setStyleBackgroundColor(sort, style1, CornerState.CORNER_ROUND.value)
                 }
             }
         }
@@ -251,13 +252,13 @@ object Shopping {
         val gradientDrawable = GradientDrawable()
 
         when (cornerState) {
-            State.CORNER_LEFT.value -> {
+            CornerState.CORNER_LEFT.value -> {
                 cornerList = floatArrayOf(10f, 10f, 0f, 0f, 0f, 0f, 10f, 10f)
             }
-            State.CORNER_RIGHT.value -> {
+            CornerState.CORNER_RIGHT.value -> {
                 cornerList = floatArrayOf(0f, 0f, 10f, 10f, 10f, 10f, 0f, 0f)
             }
-            State.CORNER_ROUND.value -> {
+            CornerState.CORNER_ROUND.value -> {
                 cornerList = floatArrayOf(10f, 10f, 10f, 10f, 10f, 10f, 10f, 10f)
             }
         }
@@ -270,7 +271,7 @@ object Shopping {
                 )
             )
             cornerRadii = cornerList
-            setStroke(State.CORNER_STRIKE_WIDTH.value, R.color.colorLeanWhite)
+            setStroke(CornerState.CORNER_STRIKE_WIDTH.value, R.color.colorLeanWhite)
             shape = GradientDrawable.RECTANGLE
         }
 

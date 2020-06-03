@@ -2,7 +2,7 @@ package com.work.toy_zigzag.view.shopping.filter.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.work.toy_zigzag.enums.State
+import com.work.toy_zigzag.enums.ClickState
 import com.work.toy_zigzag.view.shopping.filter.adapter.listener.AdapterListener
 import com.work.toy_zigzag.view.shopping.filter.adapter.viewholder.AgeViewHolder
 
@@ -26,7 +26,7 @@ class AgeAdapter(private val adapterListener: AdapterListener) :
 
     fun clear() {
         ageList.forEachIndexed { index, pair ->
-            ageList[index] = Pair(pair.first, State.UNCHECK.value)
+            ageList[index] = Pair(pair.first, ClickState.UNCHECK.value)
         }
         notifyDataSetChanged()
     }

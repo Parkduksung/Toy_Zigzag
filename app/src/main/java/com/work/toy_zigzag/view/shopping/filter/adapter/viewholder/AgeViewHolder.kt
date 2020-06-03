@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.work.toy_zigzag.R
 import com.work.toy_zigzag.databinding.AgeItemBinding
+import com.work.toy_zigzag.enums.ClickState
 import com.work.toy_zigzag.enums.Sort
-import com.work.toy_zigzag.enums.State
 import com.work.toy_zigzag.ext.changeBackground
 import com.work.toy_zigzag.ext.changeText
 import com.work.toy_zigzag.view.shopping.filter.adapter.listener.AdapterListener
@@ -23,7 +23,7 @@ class AgeViewHolder(parent: ViewGroup, private val adapterListener: AdapterListe
 
         binding.cbAge.text = age.first
 
-        if (age.second == State.UNCHECK.value) {
+        if (age.second == ClickState.UNCHECK.value) {
             binding.cbAge.apply {
                 changeBackground(R.color.colorWhite)
                 changeText(R.color.colorPrimary)
@@ -46,7 +46,7 @@ class AgeViewHolder(parent: ViewGroup, private val adapterListener: AdapterListe
                 }
                 adapterListener.getItemState(
                     Sort.AGE,
-                    Pair(age.first, State.CHECK.value)
+                    Pair(age.first, ClickState.CHECK.value)
                 )
             } else {
                 binding.cbAge.apply {
@@ -55,7 +55,7 @@ class AgeViewHolder(parent: ViewGroup, private val adapterListener: AdapterListe
                 }
                 adapterListener.getItemState(
                     Sort.AGE,
-                    Pair(age.first, State.UNCHECK.value)
+                    Pair(age.first, ClickState.UNCHECK.value)
                 )
             }
         }
