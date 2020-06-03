@@ -18,7 +18,6 @@ import com.work.toy_zigzag.enums.Sort
 import com.work.toy_zigzag.util.Decoration
 import com.work.toy_zigzag.util.Shopping
 import com.work.toy_zigzag.util.Shopping.getCheckList
-import com.work.toy_zigzag.util.Shopping.getStyleList
 import com.work.toy_zigzag.view.shopping.ShoppingListener
 import com.work.toy_zigzag.view.shopping.filter.adapter.AgeAdapter
 import com.work.toy_zigzag.view.shopping.filter.adapter.StyleAdapter
@@ -136,13 +135,13 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
         isCheckStyleMap.clear()
     }
 
-    override fun getItemState(sort: Sort, state: Pair<String, Int>) {
+    override fun getItemState(sort: Sort, changeItem: Pair<String, Int>) {
         when (sort) {
             Sort.AGE -> {
-                isCheckAgeMap[state.first] = state.second
+                isCheckAgeMap[changeItem.first] = changeItem.second
             }
             Sort.STYLE -> {
-                isCheckStyleMap[state.first] = state.second
+                isCheckStyleMap[changeItem.first] = changeItem.second
             }
         }
     }
@@ -156,33 +155,31 @@ class ShoppingFilterFragment : Fragment(), View.OnClickListener, AdapterListener
             ShoppingFilterPresenter.SORT_AGE -> {
                 ageMapList.addAll(itemMapList)
                 isCheckAgeMap.putAll(isCheckItemMap)
+                ageAdapter.addAllData(ageMapList)
             }
             ShoppingFilterPresenter.SORT_STYLE -> {
                 styleMapList.addAll(itemMapList)
                 isCheckStyleMap.putAll(isCheckItemMap)
+                styleAdapter.addAllData(styleMapList)
             }
         }
     }
 
     private fun startView() {
-
-        presenter.apply {
-            checkSelectFilter(resources.getStringArray(R.array.ageGroup).toList())
-            checkSelectFilter(getStyleList())
+        binding.rvStyle.run {
+            adapter = styleAdapter
+            layoutManager = GridLayoutManager(context, STYLE_SPAN_COUNT)
+            addItemDecoration(Decoration(10, 10, 20, 20))
         }
 
         binding.rvAge.run {
             adapter = ageAdapter
             layoutManager = GridLayoutManager(context, AGE_SPAN_COUNT)
             addItemDecoration(Decoration(10, 10, 20, 20))
-            ageAdapter.addAllData(ageMapList)
         }
-
-        binding.rvStyle.run {
-            adapter = styleAdapter
-            layoutManager = GridLayoutManager(context, STYLE_SPAN_COUNT)
-            addItemDecoration(Decoration(10, 10, 20, 20))
-            styleAdapter.addAllData(styleMapList)
+        presenter.apply {
+            checkSelectFilter(Sort.AGE)
+            checkSelectFilter(Sort.STYLE)
         }
     }
 

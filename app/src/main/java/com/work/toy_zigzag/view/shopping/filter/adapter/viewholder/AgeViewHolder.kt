@@ -17,8 +17,6 @@ class AgeViewHolder(parent: ViewGroup, private val adapterListener: AdapterListe
             R.layout.age_item, parent, false
         )
     ) {
-
-
     private val binding = AgeItemBinding.bind(itemView)
 
     fun bind(age: Pair<String, Int>) {
@@ -39,19 +37,26 @@ class AgeViewHolder(parent: ViewGroup, private val adapterListener: AdapterListe
             }
         }
 
+
         binding.cbAge.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 binding.cbAge.apply {
                     changeBackground(R.color.colorPrimary)
                     changeText(R.color.colorWhite)
                 }
-                adapterListener.getItemState(Sort.AGE, Pair(age.first, State.CHECK.value))
+                adapterListener.getItemState(
+                    Sort.AGE,
+                    Pair(age.first, State.CHECK.value)
+                )
             } else {
                 binding.cbAge.apply {
                     changeBackground(R.color.colorWhite)
                     changeText(R.color.colorPrimary)
                 }
-                adapterListener.getItemState(Sort.AGE, Pair(age.first, State.UNCHECK.value))
+                adapterListener.getItemState(
+                    Sort.AGE,
+                    Pair(age.first, State.UNCHECK.value)
+                )
             }
         }
 

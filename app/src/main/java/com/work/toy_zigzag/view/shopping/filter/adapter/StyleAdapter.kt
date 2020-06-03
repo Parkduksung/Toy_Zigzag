@@ -25,7 +25,9 @@ class StyleAdapter(private val adapterListener: AdapterListener) :
     }
 
     fun clear() {
-        styleList.let { styleList.map { Pair(it.first, State.UNCHECK.value) } }
+        styleList.forEachIndexed { index, pair ->
+            styleList[index] = Pair(pair.first, State.UNCHECK.value)
+        }
         notifyDataSetChanged()
     }
 }

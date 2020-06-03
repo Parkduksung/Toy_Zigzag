@@ -279,26 +279,46 @@ object Shopping {
 
     fun getAgeListBySelectFilter(selectFilter: String): List<String> {
         return if (selectFilter.contains("/")) {
-            selectFilter.split("/")[0]
-                .substring(0, selectFilter.split("/")[0].lastIndex - 1)
-                .split(",")
+            val toSortAgeString =
+                selectFilter.split("/")[0]
+                    .substring(0, selectFilter.split("/")[0].lastIndex)
+
+            if (toSortAgeString.contains(",")) {
+                toSortAgeString.split(",")
+            } else {
+                listOf(toSortAgeString)
+            }
         } else {
             if (selectFilter.none { it.isDigit() }) {
                 emptyList()
             } else {
-                selectFilter.split(",")
+                if (selectFilter.contains(",")) {
+                    selectFilter.split(",")
+                } else {
+                    listOf(selectFilter)
+                }
             }
         }
     }
 
     fun getStyleListBySelectFilter(selectFilter: String): List<String> {
         return if (selectFilter.contains("/")) {
-            selectFilter.split("/")[1]
-                .substring(1, selectFilter.split("/")[1].lastIndex)
-                .split(",")
+            val toSortStyleString =
+                selectFilter.split("/")[1]
+                    .substring(1)
+
+            if (toSortStyleString.contains(",")) {
+                toSortStyleString.split(",")
+            } else {
+                listOf(toSortStyleString)
+            }
         } else {
             if (selectFilter.none { it.isDigit() }) {
-                selectFilter.split(",")
+                if (selectFilter.contains(",")) {
+                    selectFilter.split(",")
+                } else {
+                    listOf(selectFilter)
+                }
             } else {
                 emptyList()
             }

@@ -44,13 +44,19 @@ class StyleViewHolder(parent: ViewGroup, private val adapterListener: AdapterLis
                     changeBackground(R.color.colorAccent)
                     changeText(R.color.colorWhite)
                 }
-                adapterListener.getItemState(Sort.STYLE, Pair(style.first, State.CHECK.value))
+                adapterListener.getItemState(
+                    Sort.STYLE,
+                    Pair(style.first, State.CHECK.value)
+                )
             } else {
                 binding.cbStyle.apply {
                     changeBackground(R.color.colorWhite)
                     changeText(R.color.colorAccent)
                 }
-                adapterListener.getItemState(Sort.STYLE, Pair(style.first, State.UNCHECK.value))
+                adapterListener.getItemState(
+                    Sort.STYLE,
+                    Pair(style.first, State.UNCHECK.value)
+                )
             }
         }
     }

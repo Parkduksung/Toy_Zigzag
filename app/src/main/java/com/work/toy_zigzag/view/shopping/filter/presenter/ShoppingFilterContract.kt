@@ -1,6 +1,7 @@
 package com.work.toy_zigzag.view.shopping.filter.presenter
 
 import com.work.toy_zigzag.data.model.ShoppingItem
+import com.work.toy_zigzag.enums.Sort
 
 interface ShoppingFilterContract {
 
@@ -8,7 +9,7 @@ interface ShoppingFilterContract {
         fun showItem(shoppingItem: ShoppingItem)
 
         fun showSelectFilterList(
-            sort : Int,
+            sort: Int,
             itemMapList: List<Pair<String, Int>>,
             isCheckItemMap: Map<String, Int>
         )
@@ -17,6 +18,6 @@ interface ShoppingFilterContract {
     interface Presenter {
         fun getItem(ageGroup: List<Int>, styleList: List<String>)
 
-        fun checkSelectFilter(list: List<String>)
+        fun checkSelectFilter(sort: Sort)
     }
 }

@@ -22,7 +22,6 @@ import org.koin.core.parameter.parametersOf
 class ShoppingActivity : AppCompatActivity(), View.OnClickListener, ShoppingContract.View,
     ShoppingListener {
 
-
     private lateinit var presenter: ShoppingContract.Presenter
     private lateinit var binding: ShoppingMainBinding
 

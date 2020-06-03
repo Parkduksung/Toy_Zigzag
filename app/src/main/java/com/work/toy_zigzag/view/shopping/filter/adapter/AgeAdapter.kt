@@ -25,7 +25,9 @@ class AgeAdapter(private val adapterListener: AdapterListener) :
     }
 
     fun clear() {
-        ageList.let { ageList.map { Pair(it.first, State.UNCHECK.value) } }
+        ageList.forEachIndexed { index, pair ->
+            ageList[index] = Pair(pair.first, State.UNCHECK.value)
+        }
         notifyDataSetChanged()
     }
 }
