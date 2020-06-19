@@ -8,6 +8,7 @@ import com.work.toy_zigzag.R
 import com.work.toy_zigzag.data.model.ShoppingDocumentsItem
 import com.work.toy_zigzag.databinding.ListItemBinding
 import com.work.toy_zigzag.util.Shopping
+import com.work.toy_zigzag.view.shopping.ShoppingListener
 
 class ShoppingViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(
@@ -16,11 +17,21 @@ class ShoppingViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 ) {
     private val binding = ListItemBinding.bind(itemView)
 
-    fun bind(item: ShoppingDocumentsItem, position: Int) {
+    fun bind(
+        item: ShoppingDocumentsItem,
+        position: Int,
+        itemClickListener: ShoppingListener
+    ) {
 
-        binding.tvRank.text = (position + 1).toString()
-        binding.tvName.text = item.name
-        binding.tvAgeGroup.text = Shopping.getAgeGroup(item.ageGroup)
+        itemView.setOnClickListener {
+            itemClickListener.getItemClick(item)
+        }
+
+        binding.apply {
+            tvRank.text = (position + 1).toString()
+            tvName.text = item.name
+            tvAgeGroup.text = Shopping.getAgeGroup(item.ageGroup)
+        }
 
         Shopping.getStyle(item.sort, binding.tvStyle1, binding.tvStyle2)
 

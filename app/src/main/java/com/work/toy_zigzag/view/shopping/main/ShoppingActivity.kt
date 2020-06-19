@@ -12,6 +12,7 @@ import com.work.toy_zigzag.data.model.ShoppingDocumentsItem
 import com.work.toy_zigzag.data.model.ShoppingItem
 import com.work.toy_zigzag.databinding.ShoppingMainBinding
 import com.work.toy_zigzag.ext.replaceFragmentInActivity
+import com.work.toy_zigzag.ext.showToast
 import com.work.toy_zigzag.view.shopping.ShoppingListener
 import com.work.toy_zigzag.view.shopping.filter.ShoppingFilterFragment
 import com.work.toy_zigzag.view.shopping.main.adapter.ShoppingAdapter
@@ -50,6 +51,10 @@ class ShoppingActivity : AppCompatActivity(), View.OnClickListener, ShoppingCont
         }
     }
 
+    override fun getItemClick(shoppingDocumentsItem: ShoppingDocumentsItem) {
+        showToast(shoppingDocumentsItem.name)
+    }
+
     override fun getSelectData(shoppingItem: ShoppingItem) {
         shoppingAdapter.clear()
         showShoppingItem(shoppingItem.week, shoppingItem.list)
@@ -70,6 +75,7 @@ class ShoppingActivity : AppCompatActivity(), View.OnClickListener, ShoppingCont
     }
 
     private fun startView() {
+        shoppingAdapter.setItemClickListener(this)
         binding.rvShopping.run {
             layoutManager = LinearLayoutManager(this@ShoppingActivity)
             adapter = shoppingAdapter

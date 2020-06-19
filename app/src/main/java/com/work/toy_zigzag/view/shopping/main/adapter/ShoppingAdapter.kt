@@ -3,11 +3,14 @@ package com.work.toy_zigzag.view.shopping.main.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.work.toy_zigzag.data.model.ShoppingDocumentsItem
+import com.work.toy_zigzag.view.shopping.ShoppingListener
 import com.work.toy_zigzag.view.shopping.main.adapter.viewholder.ShoppingViewHolder
 
 class ShoppingAdapter : RecyclerView.Adapter<ShoppingViewHolder>() {
 
     private val shoppingList = mutableListOf<ShoppingDocumentsItem>()
+
+    private lateinit var shoppingListener: ShoppingListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingViewHolder =
         ShoppingViewHolder(parent)
@@ -16,7 +19,7 @@ class ShoppingAdapter : RecyclerView.Adapter<ShoppingViewHolder>() {
         shoppingList.size
 
     override fun onBindViewHolder(holder: ShoppingViewHolder, position: Int) =
-        holder.bind(shoppingList[position], position)
+        holder.bind(shoppingList[position], position, shoppingListener)
 
     fun addData(item: ShoppingDocumentsItem) {
         shoppingList.add(item)
@@ -28,4 +31,7 @@ class ShoppingAdapter : RecyclerView.Adapter<ShoppingViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun setItemClickListener(listener: ShoppingListener) {
+        shoppingListener = listener
+    }
 }
