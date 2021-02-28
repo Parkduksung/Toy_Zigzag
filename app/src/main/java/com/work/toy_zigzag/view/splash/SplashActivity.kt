@@ -30,7 +30,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
             )
 
         presenter = get { parametersOf(this) }
-        presenter.checkExistItem(FILE_NAME)
+        presenter.registerShopping(FILE_NAME)
 
     }
 

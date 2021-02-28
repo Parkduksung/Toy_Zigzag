@@ -16,7 +16,7 @@ class ShoppingLocalDataSourceImpl(
             val getItem =
                 shoppingDatabase.shoppingListDao().getAll()
 
-            AppExecutors().mainThread.execute {
+            appExecutors.mainThread.execute {
                 callback(getItem)
             }
         }

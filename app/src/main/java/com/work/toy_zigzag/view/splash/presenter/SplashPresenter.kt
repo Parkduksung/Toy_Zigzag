@@ -21,7 +21,7 @@ class SplashPresenter(
         )
     }
 
-    private fun registerShopping(fileName: String) {
+    override fun registerShopping(fileName: String) {
         shoppingRepository.registerShopping(
             fileName,
             onSuccess = { shoppingEntity ->

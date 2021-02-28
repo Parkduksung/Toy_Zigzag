@@ -10,5 +10,6 @@ interface SplashContract {
 
     interface Presenter {
         fun checkExistItem(fileName: String)
+        fun registerShopping(fileName: String)
     }
 }
