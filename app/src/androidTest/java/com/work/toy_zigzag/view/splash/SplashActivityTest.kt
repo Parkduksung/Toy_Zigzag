@@ -13,6 +13,7 @@ import com.work.toy_zigzag.network.room.dao.ShoppingDao
 import com.work.toy_zigzag.network.room.database.ShoppingDatabase
 import com.work.toy_zigzag.network.room.entity.ShoppingEntity
 import com.work.toy_zigzag.util.ConvertJson
+import junit.framework.Assert.assertNotNull
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -84,6 +85,8 @@ class SplashActivityTest {
 
         shoppingDatabase.shoppingListDao()
             .registerShoppingList(shoppingEntity)
+
+        assertNotNull(shoppingDao.getAll())
     }
 
 }
