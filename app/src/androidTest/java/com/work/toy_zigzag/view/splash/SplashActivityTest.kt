@@ -11,6 +11,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.work.toy_zigzag.R
 import com.work.toy_zigzag.network.room.dao.ShoppingDao
 import com.work.toy_zigzag.network.room.database.ShoppingDatabase
+import com.work.toy_zigzag.network.room.entity.ShoppingEntity
+import com.work.toy_zigzag.util.ConvertJson
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -61,6 +63,27 @@ class SplashActivityTest {
 
         Espresso.onView(ViewMatchers.withText(R.string.splash_recommend_wifi))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+    }
+
+    @Test
+    fun should_add_data_when_launch_app() {
+
+        ActivityScenario.launch(SplashActivity::class.java)
+
+        val getShoppingResponse =
+            ConvertJson.getShoppingList(FILE_NAME)
+
+        val toShoppingDocuments =
+            getShoppingResponse.list.map { it.toShoppingDocument() }
+
+        val shoppingEntity =
+            ShoppingEntity(
+                week = getShoppingResponse.week,
+                list = toShoppingDocuments
+            )
+
+        shoppingDatabase.shoppingListDao()
+            .registerShoppingList(shoppingEntity)
     }
 
 }
