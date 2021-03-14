@@ -14,6 +14,7 @@ import com.work.toy_zigzag.network.room.database.ShoppingDatabase
 import com.work.toy_zigzag.network.room.entity.ShoppingEntity
 import com.work.toy_zigzag.util.ConvertJson
 import junit.framework.Assert.assertNotNull
+import junit.framework.Assert.assertNull
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -88,5 +89,12 @@ class SplashActivityTest {
 
         assertNotNull(shoppingDao.getAll())
     }
+
+    @Test
+    fun should_not_add_data_when_launch_app_and_not_add() {
+        ActivityScenario.launch(SplashActivity::class.java)
+        assertNull(shoppingDao.getAll())
+    }
+
 
 }
