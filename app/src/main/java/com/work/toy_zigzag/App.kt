@@ -2,11 +2,11 @@ package com.work.toy_zigzag
 
 import android.app.Application
 import android.content.Context
-import com.work.toy_zigzag.data.di.repositoryModule
-import com.work.toy_zigzag.data.di.sourceModule
+import com.work.toy_zigzag.di.repositoryModule
+import com.work.toy_zigzag.di.sourceModule
 import com.work.toy_zigzag.di.presenterModule
 import com.work.toy_zigzag.di.viewModelModule
-import com.work.toy_zigzag.network.di.networkModule
+import com.work.toy_zigzag.di.networkModule
 import com.work.toy_zigzag.util.SharedPreferences
 import com.work.toy_zigzag.util.appExecutorsModule
 import org.koin.android.ext.koin.androidContext
