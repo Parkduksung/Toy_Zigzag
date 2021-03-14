@@ -5,6 +5,7 @@ import android.content.Context
 import com.work.toy_zigzag.data.di.repositoryModule
 import com.work.toy_zigzag.data.di.sourceModule
 import com.work.toy_zigzag.di.presenterModule
+import com.work.toy_zigzag.di.viewModelModule
 import com.work.toy_zigzag.network.di.networkModule
 import com.work.toy_zigzag.util.SharedPreferences
 import com.work.toy_zigzag.util.appExecutorsModule
@@ -29,7 +30,8 @@ class App : Application() {
                     repositoryModule,
                     sourceModule,
                     networkModule,
-                    appExecutorsModule
+                    appExecutorsModule,
+                    viewModelModule
                 )
             )
         }
