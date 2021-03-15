@@ -5,16 +5,15 @@ import androidx.room.Room
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.work.toy_zigzag.R
 import com.work.toy_zigzag.network.room.dao.ShoppingDao
 import com.work.toy_zigzag.network.room.database.ShoppingDatabase
 import com.work.toy_zigzag.network.room.entity.ShoppingEntity
 import com.work.toy_zigzag.util.ConvertJson
+import org.hamcrest.CoreMatchers.containsString
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -59,6 +58,18 @@ class ShoppingActivityTest {
 
         onView(withId(R.id.rv_shopping)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_update_date)).check(matches(isDisplayed()))
+
+    }
+
+    @Test
+    fun should_correct_week_when_start_main() {
+
+        ActivityScenario.launch(ShoppingActivity::class.java)
+        sleep(1500)
+
+        val savedWeekData = shoppingDatabase.shoppingListDao().getAll().week
+
+        onView(withId(R.id.tv_update_date)).check(matches(withText(containsString(savedWeekData))))
 
     }
 
