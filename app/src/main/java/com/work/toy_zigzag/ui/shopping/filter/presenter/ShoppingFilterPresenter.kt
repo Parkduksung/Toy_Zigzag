@@ -52,7 +52,7 @@ class ShoppingFilterPresenter(
 
     override fun getItem(ageGroup: List<Int>, styleList: List<String>) {
         shoppingRepository.getAll(
-            callback = { shoppingEntity ->
+            onSuccess = { shoppingEntity ->
                 val toShoppingItem =
                     shoppingEntity.toShoppingItem()
 
@@ -63,7 +63,11 @@ class ShoppingFilterPresenter(
                         styleList
                     )
                 )
-            })
+            },
+            onFailure = {
+
+            }
+        )
     }
 
 

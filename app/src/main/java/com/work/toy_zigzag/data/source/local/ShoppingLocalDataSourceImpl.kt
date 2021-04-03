@@ -10,14 +10,17 @@ class ShoppingLocalDataSourceImpl(
     private val shoppingDatabase: ShoppingDatabase
 ) :
     ShoppingLocalDataSource {
-    override fun getAll(callback: (shoppingEntity: ShoppingEntity) -> Unit) {
+    override fun getAll(
+        onSuccess: (shoppingEntity: ShoppingEntity) -> Unit,
+        onFailure: () -> Unit
+    ) {
         appExecutors.diskIO.execute {
 
             val getItem =
                 shoppingDatabase.shoppingListDao().getAll()
 
             appExecutors.mainThread.execute {
-                callback(getItem)
+                onSuccess(getItem)
             }
         }
     }

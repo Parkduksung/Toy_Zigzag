@@ -11,16 +11,19 @@ class ShoppingPresenter(
 
     override fun getShoppingItem() {
 
-        shoppingRepository.getAll {
-            val toShoppingItem =
-                it.toShoppingItem()
+        shoppingRepository.getAll(
+            onSuccess = {
+                val toShoppingItem =
+                    it.toShoppingItem()
 
-            val toSelectItem =
-                Shopping.getSelectFilterList(toShoppingItem, App.prefs.selectFilter)
+                val toSelectItem =
+                    Shopping.getSelectFilterList(toShoppingItem, App.prefs.selectFilter)
 
-            shoppingView.showShoppingItem(toSelectItem.week, toSelectItem.list)
+                shoppingView.showShoppingItem(toSelectItem.week, toSelectItem.list)
+            },
+            onFailure = {
 
-        }
-
+            }
+        )
     }
 }

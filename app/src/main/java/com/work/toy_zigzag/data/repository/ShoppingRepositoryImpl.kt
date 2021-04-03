@@ -5,8 +5,8 @@ import com.work.toy_zigzag.network.room.entity.ShoppingEntity
 
 class ShoppingRepositoryImpl(private val shoppingLocalDataSource: ShoppingLocalDataSource) :
     ShoppingRepository {
-    override fun getAll(callback: (shoppingEntity: ShoppingEntity) -> Unit) {
-        shoppingLocalDataSource.getAll(callback)
+    override fun getAll(onSuccess: (shoppingEntity: ShoppingEntity) -> Unit, onFailure: () -> Unit) {
+        shoppingLocalDataSource.getAll(onSuccess, onFailure)
     }
 
     override fun registerShopping(

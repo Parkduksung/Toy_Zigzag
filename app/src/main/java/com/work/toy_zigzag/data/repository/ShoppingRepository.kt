@@ -11,6 +11,7 @@ interface ShoppingRepository {
     )
 
     fun getAll(
-        callback: (shoppingEntity: ShoppingEntity) -> Unit
+        onSuccess: (shoppingEntity: ShoppingEntity) -> Unit,
+        onFailure: () -> Unit
     )
 }

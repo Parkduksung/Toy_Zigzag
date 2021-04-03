@@ -14,7 +14,7 @@ class SplashViewModel(
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun checkExistItem() {
         shoppingRepository.getAll(
-            callback = { shoppingEntity ->
+            onSuccess = { shoppingEntity ->
                 val toShoppingItem =
                     shoppingEntity.toShoppingItem()
                 if (toShoppingItem.list.isNotEmpty()) {
@@ -23,6 +23,9 @@ class SplashViewModel(
                 } else {
                     registerShopping()
                 }
+            },
+            onFailure = {
+
             }
         )
     }
