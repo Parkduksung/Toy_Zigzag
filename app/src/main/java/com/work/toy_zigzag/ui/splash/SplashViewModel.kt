@@ -25,7 +25,7 @@ class SplashViewModel(
                 }
             },
             onFailure = {
-
+                registerShopping()
             }
         )
     }
@@ -43,6 +43,7 @@ class SplashViewModel(
                 _onEventLiveData.value = OnEvent.RouteMain
             },
             onFailure = {
+
             })
     }
 

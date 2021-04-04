@@ -25,8 +25,7 @@ class SplashViewModelTest {
     @Test
     fun test() {
 
+        //이부분 고민해봐야함..
         Mockito.`when`(shoppingRepository.getAll { assert(it.list.isEmpty()) }).then { }
-
-
     }
 }
