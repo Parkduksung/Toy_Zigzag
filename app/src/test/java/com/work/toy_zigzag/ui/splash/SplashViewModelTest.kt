@@ -14,18 +14,21 @@ class SplashViewModelTest {
     @Mock
     private lateinit var shoppingRepository: ShoppingRepository
 
+    @Mock
     private lateinit var splashViewModel: SplashViewModel
 
 
     @Before
     fun setup() {
+
         splashViewModel = SplashViewModel(shoppingRepository)
     }
 
     @Test
     fun test() {
 
+
+
         //이부분 고민해봐야함..
-        Mockito.`when`(shoppingRepository.getAll { assert(it.list.isEmpty()) }).then { }
     }
 }
