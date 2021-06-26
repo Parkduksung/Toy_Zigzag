@@ -27,7 +27,8 @@ class App : Application() {
                     sourceModule,
                     networkModule,
                     appExecutorsModule,
-                    viewModelModule
+                    viewModelModule,
+                    interactorModule
                 )
             )
         }
