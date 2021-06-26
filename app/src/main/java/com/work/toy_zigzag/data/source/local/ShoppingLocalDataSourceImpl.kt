@@ -20,7 +20,7 @@ class ShoppingLocalDataSourceImpl(
                 shoppingDatabase.shoppingListDao().getAll()
 
             appExecutors.mainThread.execute {
-//                onSuccess(getItem)
+                onSuccess(getItem)
             }
         }
     }

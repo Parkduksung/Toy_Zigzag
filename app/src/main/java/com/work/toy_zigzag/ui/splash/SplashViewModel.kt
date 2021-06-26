@@ -1,5 +1,6 @@
 package com.work.toy_zigzag.ui.splash
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.work.toy_zigzag.data.repository.ShoppingRepository
 import com.work.toy_zigzag.util.Shopping
@@ -15,8 +16,9 @@ class SplashViewModel(
     private fun checkExistItem() {
         shoppingRepository.getAll(
             onSuccess = { shoppingEntity ->
-                val toShoppingItem =
-                    shoppingEntity.toShoppingItem()
+
+                val toShoppingItem = shoppingEntity.toShoppingItem()
+
                 if (toShoppingItem.list.isNotEmpty()) {
                     Shopping.saveStyleSort(toShoppingItem)
                     _onEventLiveData.value = OnEvent.RouteMain
@@ -39,11 +41,12 @@ class SplashViewModel(
         shoppingRepository.registerShopping(
             FILE_NAME,
             onSuccess = { shoppingEntity ->
+                Log.d("결과", "여기타나?onSuccessshoppingEntity")
                 Shopping.saveStyleSort(shoppingEntity.toShoppingItem())
                 _onEventLiveData.value = OnEvent.RouteMain
             },
             onFailure = {
-
+                Log.d("결과", "여기타나?onFailureshoppingEntity")
             })
     }
 
