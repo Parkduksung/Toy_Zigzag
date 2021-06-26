@@ -14,4 +14,6 @@ interface ShoppingLocalDataSource {
         onSuccess: (shoppingEntity: ShoppingEntity) -> Unit,
         onFailure: () -> Unit
     )
+
+    suspend fun getAllShoppingData(): ShoppingEntity
 }

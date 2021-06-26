@@ -4,6 +4,9 @@ import com.work.toy_zigzag.network.room.database.ShoppingDatabase
 import com.work.toy_zigzag.network.room.entity.ShoppingEntity
 import com.work.toy_zigzag.util.AppExecutors
 import com.work.toy_zigzag.util.ConvertJson
+import com.work.toy_zigzag.util.Result
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ShoppingLocalDataSourceImpl(
     private val appExecutors: AppExecutors,
@@ -56,6 +59,10 @@ class ShoppingLocalDataSourceImpl(
                 }
             }
         }
+    }
+
+    override suspend fun getAllShoppingData(): ShoppingEntity = withContext(Dispatchers.IO) {
+        return@withContext shoppingDatabase.shoppingListDao().getAll()
     }
 
 }

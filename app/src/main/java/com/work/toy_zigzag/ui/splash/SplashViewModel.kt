@@ -4,6 +4,11 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.work.toy_zigzag.data.repository.ShoppingRepository
 import com.work.toy_zigzag.util.Shopping
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.koin.java.KoinJavaComponent.inject
 
 class SplashViewModel(
     private val shoppingRepository: ShoppingRepository
@@ -11,6 +16,8 @@ class SplashViewModel(
 
     private val _onEventLiveData = MutableLiveData<OnEvent>()
     val onEventLiveData: LiveData<OnEvent> = _onEventLiveData
+
+    private val splashInteractor: SplashInteractor by inject(SplashInteractor::class.java)
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun checkExistItem() {
@@ -32,6 +39,17 @@ class SplashViewModel(
         )
     }
 
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    private fun checkExistShoppingList() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val isExist = splashInteractor.isExistShoppingData()
+
+            _onEventLiveData.value = OnEvent.IsExistSHoppingData(isExist)
+        }
+    }
+
+
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     private fun initLiveDataState() {
         _onEventLiveData.value = null
@@ -41,12 +59,10 @@ class SplashViewModel(
         shoppingRepository.registerShopping(
             FILE_NAME,
             onSuccess = { shoppingEntity ->
-                Log.d("결과", "여기타나?onSuccessshoppingEntity")
                 Shopping.saveStyleSort(shoppingEntity.toShoppingItem())
                 _onEventLiveData.value = OnEvent.RouteMain
             },
             onFailure = {
-                Log.d("결과", "여기타나?onFailureshoppingEntity")
             })
     }
 
@@ -56,5 +72,6 @@ class SplashViewModel(
 
     sealed class OnEvent {
         object RouteMain : OnEvent()
+        data class IsExistSHoppingData(val isExist: Boolean) : OnEvent()
     }
 }
