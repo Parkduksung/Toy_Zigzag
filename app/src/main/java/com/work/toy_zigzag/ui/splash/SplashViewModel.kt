@@ -19,33 +19,15 @@ class SplashViewModel(
 
     private val splashInteractor: SplashInteractor by inject(SplashInteractor::class.java)
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    private fun checkExistItem() {
-        shoppingRepository.getAll(
-            onSuccess = { shoppingEntity ->
-
-                val toShoppingItem = shoppingEntity.toShoppingItem()
-
-                if (toShoppingItem.list.isNotEmpty()) {
-                    Shopping.saveStyleSort(toShoppingItem)
-                    _onEventLiveData.value = OnEvent.RouteMain
-                } else {
-                    registerShopping()
-                }
-            },
-            onFailure = {
-                registerShopping()
-            }
-        )
-    }
-
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun checkExistShoppingList() {
         CoroutineScope(Dispatchers.Main).launch {
-            val isExist = splashInteractor.isExistShoppingData()
-
-            _onEventLiveData.value = OnEvent.IsExistSHoppingData(isExist)
+            if(shoppingRepository.isExistShoppingData()){
+                _onEventLiveData.value = OnEvent.RouteMain
+            } else{
+                registerShopping()
+            }
         }
     }
 
