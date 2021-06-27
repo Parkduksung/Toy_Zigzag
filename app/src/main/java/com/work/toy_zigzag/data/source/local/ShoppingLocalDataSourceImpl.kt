@@ -5,6 +5,7 @@ import com.work.toy_zigzag.network.room.entity.ShoppingEntity
 import com.work.toy_zigzag.util.AppExecutors
 import com.work.toy_zigzag.util.ConvertJson
 import com.work.toy_zigzag.util.Result
+import com.work.toy_zigzag.util.Shopping
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -27,6 +28,32 @@ class ShoppingLocalDataSourceImpl(
             }
         }
     }
+
+    override suspend fun registerShoppingData(fileName: String): Result<ShoppingEntity> =
+        withContext(Dispatchers.IO) {
+            val getShoppingResponse =
+                ConvertJson.getShoppingList(fileName)
+
+            val toShoppingDocuments =
+                getShoppingResponse.list.map { it.toShoppingDocument() }
+
+            val shoppingEntity =
+                ShoppingEntity(
+                    week = getShoppingResponse.week,
+                    list = toShoppingDocuments
+                )
+
+            val registerShoppingList =
+                shoppingDatabase.shoppingListDao()
+                    .registerShoppingList(shoppingEntity)
+
+            return@withContext if (registerShoppingList >= 1) {
+                Shopping.saveStyleSort(shoppingEntity.toShoppingItem())
+                Result.success(shoppingEntity)
+            } else {
+                Result.failure(Exception("Error"))
+            }
+        }
 
     override fun registerShopping(
         fileName: String,

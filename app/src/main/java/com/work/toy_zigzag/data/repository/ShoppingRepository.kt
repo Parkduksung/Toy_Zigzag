@@ -18,4 +18,6 @@ interface ShoppingRepository {
 
     suspend fun isExistShoppingData() : Boolean
 
+    suspend fun registerShoppingData(fileName: String) : Result<ShoppingEntity>
+
 }

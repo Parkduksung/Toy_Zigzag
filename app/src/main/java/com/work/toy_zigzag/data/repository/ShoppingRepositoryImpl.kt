@@ -27,4 +27,8 @@ class ShoppingRepositoryImpl(private val shoppingLocalDataSource: ShoppingLocalD
         return@withContext shoppingLocalDataSource.getAllShoppingData().list.isNotEmpty()
     }
 
+    override suspend fun registerShoppingData(fileName: String): Result<ShoppingEntity> =
+        withContext(Dispatchers.IO) {
+            return@withContext shoppingLocalDataSource.registerShoppingData(fileName)
+        }
 }

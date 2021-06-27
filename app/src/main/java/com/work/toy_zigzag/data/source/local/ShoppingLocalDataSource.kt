@@ -1,6 +1,7 @@
 package com.work.toy_zigzag.data.source.local
 
 import com.work.toy_zigzag.network.room.entity.ShoppingEntity
+import com.work.toy_zigzag.util.Result
 
 interface ShoppingLocalDataSource {
 
@@ -16,4 +17,6 @@ interface ShoppingLocalDataSource {
     )
 
     suspend fun getAllShoppingData(): ShoppingEntity
+
+    suspend fun registerShoppingData(fileName: String) : Result<ShoppingEntity>
 }

@@ -23,10 +23,12 @@ class SplashViewModel(
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun checkExistShoppingList() {
         CoroutineScope(Dispatchers.Main).launch {
-            if(shoppingRepository.isExistShoppingData()){
+            if (splashInteractor.isExistShoppingData()) {
                 _onEventLiveData.value = OnEvent.RouteMain
-            } else{
-                registerShopping()
+            } else {
+                if(splashInteractor.registerShoppingData(fileName = FILE_NAME).isSuccess){
+                    _onEventLiveData.value = OnEvent.RouteMain
+                }
             }
         }
     }
@@ -37,16 +39,6 @@ class SplashViewModel(
         _onEventLiveData.value = null
     }
 
-    private fun registerShopping() {
-        shoppingRepository.registerShopping(
-            FILE_NAME,
-            onSuccess = { shoppingEntity ->
-                Shopping.saveStyleSort(shoppingEntity.toShoppingItem())
-                _onEventLiveData.value = OnEvent.RouteMain
-            },
-            onFailure = {
-            })
-    }
 
     companion object {
         private const val FILE_NAME = "shop_list.json"
