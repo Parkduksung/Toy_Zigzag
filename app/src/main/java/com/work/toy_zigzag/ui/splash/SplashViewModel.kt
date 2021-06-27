@@ -10,9 +10,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.java.KoinJavaComponent.inject
 
-class SplashViewModel(
-    private val shoppingRepository: ShoppingRepository
-) : ViewModel(), LifecycleObserver {
+class SplashViewModel : ViewModel(), LifecycleObserver {
 
     private val _onEventLiveData = MutableLiveData<OnEvent>()
     val onEventLiveData: LiveData<OnEvent> = _onEventLiveData
@@ -26,7 +24,7 @@ class SplashViewModel(
             if (splashInteractor.isExistShoppingData()) {
                 _onEventLiveData.value = OnEvent.RouteMain
             } else {
-                if(splashInteractor.registerShoppingData(fileName = FILE_NAME).isSuccess){
+                if (splashInteractor.registerShoppingData(fileName = FILE_NAME).isSuccess) {
                     _onEventLiveData.value = OnEvent.RouteMain
                 }
             }

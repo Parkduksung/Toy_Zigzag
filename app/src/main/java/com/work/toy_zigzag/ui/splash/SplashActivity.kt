@@ -9,7 +9,6 @@ import com.work.toy_zigzag.base.BaseActivity
 import com.work.toy_zigzag.databinding.SplashBinding
 import com.work.toy_zigzag.ui.shopping.main.ShoppingActivity
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity : BaseActivity<SplashBinding>(R.layout.splash) {
 
