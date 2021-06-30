@@ -1,7 +1,9 @@
 package com.work.toy_zigzag.ui.splash
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.work.toy_zigzag.base.BaseViewModel
 import com.work.toy_zigzag.data.repository.ShoppingRepository
 import com.work.toy_zigzag.util.Shopping
 import kotlinx.coroutines.CoroutineScope
@@ -10,7 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.java.KoinJavaComponent.inject
 
-class SplashViewModel : ViewModel(), LifecycleObserver {
+class SplashViewModel(application: Application) : BaseViewModel(application), LifecycleObserver {
 
     private val _onEventLiveData = MutableLiveData<OnEvent>()
     val onEventLiveData: LiveData<OnEvent> = _onEventLiveData
