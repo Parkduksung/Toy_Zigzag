@@ -20,13 +20,13 @@ class SplashActivity : BaseActivity<SplashBinding>(R.layout.splash) {
 
         lifecycle.addObserver(splashViewModel)
 
-        splashViewModel.onEventLiveData.observe(this, { event ->
+        splashViewModel.splashViewStateLiveData.observe(this, { event ->
             when (event) {
-                is SplashViewModel.OnEvent.RouteMain -> {
+                is SplashViewModel.SplashViewState.RouteMain -> {
                     startMain()
                 }
 
-                is SplashViewModel.OnEvent.IsExistSHoppingData -> {
+                is SplashViewModel.SplashViewState.IsExistSHoppingData -> {
                     Toast.makeText(this, "결과는 ${event.isExist}", Toast.LENGTH_LONG).show()
                 }
 
