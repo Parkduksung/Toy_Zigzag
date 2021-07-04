@@ -6,6 +6,7 @@ import android.os.Handler
 import android.widget.Toast
 import com.work.toy_zigzag.R
 import com.work.toy_zigzag.base.BaseActivity
+import com.work.toy_zigzag.base.ViewState
 import com.work.toy_zigzag.databinding.SplashBinding
 import com.work.toy_zigzag.ui.shopping.main.ShoppingActivity
 import org.koin.android.ext.android.inject
@@ -20,22 +21,25 @@ class SplashActivity : BaseActivity<SplashBinding>(R.layout.splash) {
 
         lifecycle.addObserver(splashViewModel)
 
-        splashViewModel.splashViewStateLiveData.observe(this, { event ->
-            when (event) {
-                is SplashViewModel.SplashViewState.RouteMain -> {
-                    startMain()
-                }
+        initViewModel()
+    }
 
-                is SplashViewModel.SplashViewState.IsExistSHoppingData -> {
-                    Toast.makeText(this, "결과는 ${event.isExist}", Toast.LENGTH_LONG).show()
-                }
 
-                else -> {
-                }
-            }
+    private fun initViewModel() {
+        splashViewModel.viewStateLiveData.observe(this, { viewState: ViewState? ->
+            (viewState as? SplashViewModel.SplashViewState)?.let { onChangedViewState(viewState) }
         })
     }
 
+    private fun onChangedViewState(viewState: SplashViewModel.SplashViewState) {
+        when (viewState) {
+            SplashViewModel.SplashViewState.RouteMain -> startMain()
+
+            is SplashViewModel.SplashViewState.IsExistShoppingData -> {
+                Toast.makeText(this, "결과는 ${viewState.isExist}", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
     private fun startMain() {
         Handler().postDelayed({
