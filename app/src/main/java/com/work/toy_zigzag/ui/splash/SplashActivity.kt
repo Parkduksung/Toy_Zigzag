@@ -35,9 +35,6 @@ class SplashActivity : BaseActivity<SplashBinding>(R.layout.splash) {
         when (viewState) {
             SplashViewModel.SplashViewState.RouteMain -> startMain()
 
-            is SplashViewModel.SplashViewState.IsExistShoppingData -> {
-                Toast.makeText(this, "결과는 ${viewState.isExist}", Toast.LENGTH_LONG).show()
-            }
         }
     }
 

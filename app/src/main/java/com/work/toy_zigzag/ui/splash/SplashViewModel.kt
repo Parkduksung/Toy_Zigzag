@@ -32,11 +32,8 @@ class SplashViewModel(application: Application) : BaseViewModel(application), Li
         private const val FILE_NAME = "shop_list.json"
     }
 
-    sealed class SplashViewState : ViewState  {
+    sealed class SplashViewState : ViewState {
         object RouteMain : SplashViewState()
-        data class IsExistShoppingData(val isExist: Boolean) : SplashViewState()
     }
-
-
 
 }
